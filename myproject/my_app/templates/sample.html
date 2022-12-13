@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <style type="text/css">
+        section{
+            width: 1000px;
+            height: 360px;
+            margin: 100px auto;
+            display: flex;
+            justify-content: space-around;
+        }
+        h1{
+           text-align: center; 
+        }
+        div{
+            width: 200px;
+            height: 90%;
+            padding: 20px;
+            margin: 10px;
+            background: #fafafa;
+            box-sizing: border-box;
+        }
+        p{
+            background: red;
+            padding: 5px;
+            border-radius:5px ;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task & Planner</h1>
+    <section>
+        <div data-id="To do"  class="choice">
+            <h1>To do</h1>
+            {% for i in todo_mdoel_data %}
+            <p  data-id={{i.id}}  draggable="true">{{i.task_name}}</p>
+            {% endfor %}
+           
+        </div>
+        <div data-id="Completed" class="choice">
+            <h1>Completed</h1>
+            {% for i in completed_mdoel_data %}
+            <p  data-id={{i.id}}  draggable="true">{{i.task_name}}</p>
+            {% endfor %}
+        </div>
+        <div data-id="Testing"  class="choice">
+            <h1>Testing</h1>
+            {% for i in Testing_mdoel_data %}
+            <p  data-id={{i.id}}  draggable="true">{{i.task_name}}</p>
+            {% endfor %}
+        </div>
+        <div data-id="Onhold"  class="choice">
+            <h1>Onhold</h1>
+            {% for i in Onhold_mdoel_data %}
+            <p  data-id={{i.id}}  draggable="true">{{i.task_name}}</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script type="text/javascript">
+        var v1 = ''
+        var p = document.getElementsByTagName('p');
+        var choice = document.getElementsByClassName('choice');
+        var dragItem = null;
+        for(var i of p){
+            i.addEventListener('dragstart',dragStart);
+            i.addEventListener('dragend',dragEnd);
+
+        }
+        function dragStart(){
+             v1 = $(this).attr('data-id')
+            console.log(v1)
+           
+            dragItem = this;
+            setTimeout(()=>this.style.display='none',0);
+
+        }
+        function dragEnd(){
+           
+            setTimeout(()=>this.style.display='block',0);
+            dragItem = null;
+
+        }
+        for(j of choice){
+           
+            j.addEventListener('dragover',dragOver);
+            j.addEventListener('dragenter',dragEnter);
+            j.addEventListener('dragleave',dragLeave);
+            j.addEventListener('drop',Drop)
+        }
+        function Drop(){
+            var status = $(this).attr("data-id")
+            console.log(status)
+            console.log(v1)
+           console.log("droupppppppppppp")
+                      $.ajax({url: 'task_status_update_api?status='+status+'&vid='+v1, success: function(result){
+                        console.log("successs")
+    }});
+            this.append(dragItem);
+        }
+        function dragLeave(){
+            this.style.border = "none"
+            console.log("leaveeeeeeeeeeeee")
+           
+        }
+
+        function dragEnter(e){
+            console.log("ddddddddddddd")
+            e.preventDefault()
+        }
+        function dragOver(e){
+          
+           e.preventDefault()
+          
+        
+         
+      
+       
+
+           this.style.border = "2px dotted cyan"
+
+
+        }
+    </script>
+</body>
+</html>
