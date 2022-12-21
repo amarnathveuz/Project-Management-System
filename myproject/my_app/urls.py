@@ -21,7 +21,7 @@ urlpatterns = [
 
     path('user_management',views.user_management,name='user_management'),
     
-    path('user_add_action',views.user_add_action,name='user_add_action'),
+    path('user_management_action',views.user_management_action,name='user_management_action'),
     path('user_edit_modal_function',views.user_edit_modal_function,name='user_edit_modal_function'),
     path('user_update_action',views.user_update_action,name='user_update_action'),
 
@@ -29,7 +29,6 @@ urlpatterns = [
 
     path('space_add_action',views.space_add_action,name='space_add_action'),
 
-    path('user_management_action',views.user_management_action,name='user_management_action'),
 
 
     path('role_management',views.role_management,name='role_management'),

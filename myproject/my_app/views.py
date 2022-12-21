@@ -50,7 +50,6 @@ def index(request):
             # if user is company_user(their space only)
             space_access_data = space_access_permission_user.objects.get(invite_user_auth_id=request.user)
             space_master_data = space_master.objects.filter(id=space_access_data.space_id.id)
-            print("space_master_data::::::",space_master_data)
     except:
         pass
 
@@ -108,6 +107,7 @@ def login_action(request):
 #     models_data = company_master.objects.all().order_by('?')[0]   
 #     return Response(models_data,template_name = 'company_management.html')
 
+# -----------------------------------------------------company_management-----------------------------------------------------------------
 
 def company_management(request):
 
@@ -143,8 +143,6 @@ def comapny_add_action(request):
         resized_image.save("media/company_logo/"+logo.name,quality=100)
         image_new1 = 'company_logo/'+logo.name
         
-
-
         tax_no = request.POST.get("tax_no",False)
         mobile_no = request.POST.get("mobile_no",False)
         website = request.POST.get("website",False)
@@ -155,7 +153,6 @@ def comapny_add_action(request):
         if company_master.objects.filter(company_name=companyname).exists():
             messages.error(request,"Company name already exists")
             return redirect(request.META['HTTP_REFERER'])
-
         else:
             company_master.objects.create(
                 company_name =companyname,
@@ -194,7 +191,6 @@ def company_update_action(request):
         image = Image.open(logo)
         print("image.size",image.size)
         width_size = int(fixed_height/image.height * image.width)
-        print("width_size:::::",width_size)
         resized_image = image.resize((width_size,fixed_height))
         print("resizeeeeeed:",resized_image.size)
         from django.conf import settings
@@ -207,7 +203,6 @@ def company_update_action(request):
         email = request.POST.get("email",False)
         address = request.POST.get("address",False)
         now = datetime.now()
-
 
         data = company_master.objects.get(id=id)
         if (data.company_name != companyname or data.tax_number != tax_no or data.mobile != mobile_no  or data.website != website or data.phone != phone or data.email != email or data.address != address):
@@ -236,7 +231,10 @@ def company_update_action(request):
             messages.success(request,"Successfully updated")
             return redirect(request.META['HTTP_REFERER'])
 
-# user_management
+
+
+
+# -----------------------------------------------------user_management-----------------------------------------------------------------
 
 def user_management(request):
     user_data = User.objects.all().first()
@@ -247,245 +245,6 @@ def user_management(request):
         "member_data":member_data
     }
     return render(request, 'user_management.html',context)
-
-
-def user_add_action(request):
-    if request.method == "POST":
-        companyname = request.POST.get("companyname",False)
-        photo =  request.FILES['photo']
-        fixed_height = 400
-        image = Image.open(photo)
-        print("image.size",image.size)
-        width_size = int(fixed_height/image.height * image.width)
-        print("width_size:::::",width_size)
-        resized_image = image.resize((width_size,fixed_height))
-        print("resizeeeeeed:",resized_image.size)
-        from django.conf import settings
-        resized_image.save("media/user_image/"+photo.name)
-        image_new1 = 'user_image/'+photo.name
-
-        name = request.POST.get("name",False)
-        username = request.POST.get("username",False)
-        password_option = request.POST.get("password_option",False)
-        phone = request.POST.get("phone",False)
-        email = request.POST.get("email",False)
-        user_type = request.POST.get("user_type",False)
-        print("user_type:::::::;",user_type)
-
-        if password_option == "Automatic":
-            import string    
-            import random
-            S = 10
-            password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
-        else:
-            password = request.POST.get("password",False)
-
-        if User_details.objects.filter(username=username).exists():
-            messages.warning(request,"Username already exists")
-            return redirect(request.META['HTTP_REFERER'])
-
-        else:
-            user = User.objects.create_user(username, password = password)
-            user.save()
-            if company_master.objects.filter(company_name = companyname).exists():
-
-                company = company_master.objects.get(company_name = companyname)
-                
-                user_data = User_details.objects.create(
-                    company_id_id = company.id,
-                    company_name =companyname,
-                    auth_user = user,
-                    photo = image_new1,
-                    name = name,
-                    username = username,
-                    password_option = password_option,
-                    password = password,
-                    email = email,
-                    phone = phone,
-                    user_type = user_type,
-                    created_by = request.user,
-                    status = "True"
-                    )
-                user_data.save()
-            else:
-                user_data = User_details.objects.get(auth_user=request.user)
-
-                company_save = company_master.objects.create(company_name =companyname,created_by = request.user,status="False")
-                user_data = User_details.objects.create(
-                    company_id_id = company_save.id,
-                    company_name =companyname,
-                    auth_user = user,
-                    photo = image_new1,
-                    name = name,
-                    username = username,
-                    password_option = password_option,
-                    password = password,
-                    email = email,
-                    phone = phone,
-                    user_type = user_type,
-                    created_by = request.user,
-                    status = "True"
-                    )
-                user_data.save()
-                
-            # active_user = ''
-            # try:
-            #     user_details = User_details.objects.get(auth_user = request.user)
-            #     active_user = user_details.id
-            # except:
-            #     pass
-            # print("active_user:::::::;",active_user)
-            # if active_user == '':
-            #     active_user = 4
-
-            
-            # user_active_account.objects.create(
-            #     active_user_id_id = active_user,
-            #     active_auth_user_id_id = request.auth_user
-            # )
-           
-
-            messages.success(request,"Successfully added User details")
-            return redirect(request.META['HTTP_REFERER'])
-
-
-def user_edit_modal_function(request):
-    id = request.GET.get("id",False)
-    data = User_details.objects.get(id=id)
-    
-    context = {
-        "data" : data,
-    }
-    return render(request,'user_edit_modal_function.html',context)
-
-
-
-def user_update_action(request):
-     if request.method == "POST":
-        id = request.POST.get("id",False)
-        companyname = request.POST.get("companyname",False)
-        photo =  request.FILES['photo']
-
-        fixed_height = 400
-        image = Image.open(photo)
-        print("image.size",image.size)
-        width_size = int(fixed_height/image.height * image.width)
-        resized_image = image.resize((width_size,fixed_height))
-        print("resizeeeeeed:",resized_image.size)
-        from django.conf import settings
-        resized_image.save("media/user_image/"+photo.name)
-        image_new1 = 'user_image/'+photo.name
-
-        name = request.POST.get("name",False)
-        username = request.POST.get("username",False)
-        password_option = request.POST.get("password_option",False)
-        phone = request.POST.get("phone",False)
-        email = request.POST.get("email",False)
-        
-
-        if password_option == "Automatic":
-            import string    
-            import random
-            S = 10
-            password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
-        else:
-            password = request.POST.get("password",False)
-
-        now = datetime.now()
-
-        data = User_details.objects.get(id=id)
-        if (data.company_name != companyname or data.name != name or data.username != username  or data.password_option != password_option or data.password != password or  data.phone != phone or data.email != email):
-            update_status = True
-        else:
-            update_status = False
-        if update_status == False :
-            messages.error(request,"Not updated")
-            return redirect(request.META['HTTP_REFERER'])
-        else:
-
-            current_time = now.strftime("%H:%M:%S")
-            User_details.objects.filter(id=id).update(company_name = companyname,
-                name = name,
-                username = username,
-                photo = image_new1,
-                password_option = password_option,
-                password = password,
-                user_type = user_type,
-                phone = phone,
-                email = email,
-                updated_by = request.user,
-                updated_dt = date.today(),
-                updated_tm = current_time
-
-                )
-            messages.success(request,"Successfully updated")
-            return redirect(request.META['HTTP_REFERER'])
-
-
-def member_management(request):
-    user_permission_modal = user_permission_mapping.objects.filter(auth_user_id=request.user)
-    user_permission_modal1 = list(user_permission_modal.values_list('role_mapping_id',flat=True))
-    user_manage_all_permission = Role_mapping.objects.filter(role_master_id__in=user_permission_modal1,navbar_name="Team member",manage_all=True)
-
-    print("user_manage_all_permission:::",str(user_manage_all_permission))
-    today = date.today()
-    user_data = User.objects.all().first()
-    user_details_data = User_details.objects.get(auth_user=request.user)
-    if user_manage_all_permission:
-        active_user_id = user_active_account.objects.get(user_id_id=user_details_data.id)
-        user_active_account1 = user_active_account.objects.filter(active_auth_user_id_id =active_user_id.active_auth_user_id )
-        child_user_id = list(user_active_account1.values_list('user_id__auth_user',flat=True))
-        child_user_id.append(int(active_user_id.active_auth_user_id.id))
-        member_data = User_details.objects.filter(created_by__in=child_user_id).exclude(created_by = user_data)
-    else:
-        # user_active_account = user_active_account.objects.filter(active_auth_user_id =request.user )
-        if user_details_data.user_type == "company_admin":
-            user_active_account1 = user_active_account.objects.filter(active_auth_user_id =request.user )
-            child_user_id = list(user_active_account1.values_list('user_id__auth_user',flat=True))
-            child_user_id.append(int(request.user.id))
-            member_data = User_details.objects.filter(created_by__in=child_user_id).exclude(created_by = user_data)
-        else:
-            member_data = User_details.objects.filter(created_by=request.user).exclude(created_by = user_data)
-
-    role_data = Role_master.objects.all()
-    context = {
-        "member_data" : member_data,
-        "today":today,
-        "role_data":role_data
-    }
-    return render(request, 'member_management.html',context)
-
-
-
-
-def space_add_action(request):
-    if request.method == "POST":
-        spacename = request.POST.get("spacename",False)
-        # if data['user_type'] == "company_admin":
-        user_data = User_details.objects.get(auth_user = request.user)
-        if user_data.user_type == "company_admin":
-            space_master_data = space_master.objects.create(space_name=spacename,
-            added_user_id = request.user,
-            status = "True",
-            created_by = request.user
-            )
-        else:
-            user_active = user_active_account.objects.get(active_user_id=user_data.id)
-
-            space_master_data = space_master.objects.create(space_name=spacename,
-            active_account_id_id=user_active.active_user_id,
-            added_user_id = request.user,
-            status = "True",
-            created_by = request.user
-            )
-       
-        member_data = request.POST.getlist("member_data",False)
-        
-        for i in member_data:
-            user_details = User_details.objects.get(id=i)
-            space_access_permission_user.objects.create(space_id_id = space_master_data.id ,invite_user_details_id_id = i,invite_user_auth_id_id = user_details.auth_user.id)
-        messages.success(request,"Successfully added Space")
-        return redirect(request.META['HTTP_REFERER'])
 
 
 @api_view(['POST'])
@@ -637,35 +396,196 @@ def user_management_action(request):
                 return redirect(request.META['HTTP_REFERER'])
 
 
+def user_edit_modal_function(request):
+    id = request.GET.get("id",False)
+    data = User_details.objects.get(id=id)
+    
+    context = {
+        "data" : data,
+    }
+    return render(request,'user_edit_modal_function.html',context)
 
+
+def user_update_action(request):
+     if request.method == "POST":
+        id = request.POST.get("id",False)
+        companyname = request.POST.get("companyname",False)
+        photo =  request.FILES['photo']
+
+        fixed_height = 400
+        image = Image.open(photo)
+        print("image.size",image.size)
+        width_size = int(fixed_height/image.height * image.width)
+        resized_image = image.resize((width_size,fixed_height))
+        print("resizeeeeeed:",resized_image.size)
+        from django.conf import settings
+        resized_image.save("media/user_image/"+photo.name)
+        image_new1 = 'user_image/'+photo.name
+
+        name = request.POST.get("name",False)
+        username = request.POST.get("username",False)
+        password_option = request.POST.get("password_option",False)
+        phone = request.POST.get("phone",False)
+        email = request.POST.get("email",False)
+        
+
+        if password_option == "Automatic":
+            import string    
+            import random
+            S = 10
+            password = ''.join(random.choices(string.ascii_uppercase + string.digits, k = S))
+        else:
+            password = request.POST.get("password",False)
+
+        now = datetime.now()
+
+        data = User_details.objects.get(id=id)
+        if (data.company_name != companyname or data.name != name or data.username != username  or data.password_option != password_option or data.password != password or  data.phone != phone or data.email != email):
+            update_status = True
+        else:
+            update_status = False
+        if update_status == False :
+            messages.error(request,"Not updated")
+            return redirect(request.META['HTTP_REFERER'])
+        else:
+
+            current_time = now.strftime("%H:%M:%S")
+            User_details.objects.filter(id=id).update(company_name = companyname,
+                name = name,
+                username = username,
+                photo = image_new1,
+                password_option = password_option,
+                password = password,
+                user_type = user_type,
+                phone = phone,
+                email = email,
+                updated_by = request.user,
+                updated_dt = date.today(),
+                updated_tm = current_time
+
+                )
+            messages.success(request,"Successfully updated")
+            return redirect(request.META['HTTP_REFERER'])
+
+
+
+# -----------------------------------------------------member_management-----------------------------------------------------------------
+
+def member_management(request):
+    user_permission_modal = user_permission_mapping.objects.filter(auth_user_id=request.user)
+    user_permission_modal1 = list(user_permission_modal.values_list('role_mapping_id',flat=True))
+    user_manage_all_permission = Role_mapping.objects.filter(role_master_id__in=user_permission_modal1,navbar_name="Team member",manage_all=True)
+
+    # print("user_manage_all_permission:::",str(user_manage_all_permission))
+    today = date.today()
+    user_data = User.objects.all().first()
+    user_details_data = User_details.objects.get(auth_user=request.user)
+    if user_manage_all_permission:
+        active_user_id = user_active_account.objects.get(user_id_id=user_details_data.id)
+        user_active_account1 = user_active_account.objects.filter(active_auth_user_id_id =active_user_id.active_auth_user_id )
+        child_user_id = list(user_active_account1.values_list('user_id__auth_user',flat=True))
+        child_user_id.append(int(active_user_id.active_auth_user_id.id))
+        member_data = User_details.objects.filter(created_by__in=child_user_id).exclude(created_by = user_data)
+    else:
+        # user_active_account = user_active_account.objects.filter(active_auth_user_id =request.user )
+        if user_details_data.user_type == "company_admin":
+            user_active_account1 = user_active_account.objects.filter(active_auth_user_id =request.user )
+            child_user_id = list(user_active_account1.values_list('user_id__auth_user',flat=True))
+            child_user_id.append(int(request.user.id))
+            member_data = User_details.objects.filter(created_by__in=child_user_id).exclude(created_by = user_data)
+        else:
+            member_data = User_details.objects.filter(created_by=request.user).exclude(created_by = user_data)
+
+    role_data = Role_master.objects.all()
+
+    # space_datas
+    space_master_data = ""
+    try:
+        userdetails_data = User_details.objects.get(auth_user=request.user)
+
+        # if user is company_admin (navab sir (all space of him))
+        if userdetails_data.user_type == "company_admin":
+            space_master_data = space_master.objects.filter(added_user_id=request.user)
+    
+        else:
+            # if user is company_user(their space only)
+            space_access_data = space_access_permission_user.objects.get(invite_user_auth_id=request.user)
+            space_master_data = space_master.objects.filter(id=space_access_data.space_id.id)
+    except:
+        pass
+
+
+    context = {
+        "member_data" : member_data,
+        "today":today,
+        "role_data":role_data,
+        "space_master_data":space_master_data
+    }
+    return render(request, 'member_management.html',context)
+
+
+# -----------------------------------------------------space_management-----------------------------------------------------------------
+
+def space_add_action(request):
+    if request.method == "POST":
+        spacename = request.POST.get("spacename",False)
+        # if data['user_type'] == "company_admin":
+        user_data = User_details.objects.get(auth_user = request.user)
+        if user_data.user_type == "company_admin":
+            space_master_data = space_master.objects.create(space_name=spacename,
+            added_user_id = request.user,
+            status = "True",
+            created_by = request.user
+            )
+        else:
+            user_active = user_active_account.objects.get(active_user_id=user_data.id)
+
+            space_master_data = space_master.objects.create(space_name=spacename,
+            active_account_id_id=user_active.active_user_id,
+            added_user_id = request.user,
+            status = "True",
+            created_by = request.user
+            )
+       
+        member_data = request.POST.getlist("member_data",False)
+        
+        for i in member_data:
+            user_details = User_details.objects.get(id=i)
+            space_access_permission_user.objects.create(space_id_id = space_master_data.id ,invite_user_details_id_id = i,invite_user_auth_id_id = user_details.auth_user.id)
+        messages.success(request,"Successfully added Space")
+        return redirect(request.META['HTTP_REFERER'])
+
+
+
+# -----------------------------------------------------role_management-----------------------------------------------------------------
 
 def role_management(request):
     data = Role_master.objects.all()
     user_data = User.objects.all().first()
     member_data = User_details.objects.all().exclude(created_by = user_data)
 
+    space_master_data = ""
+    try:
+        userdetails_data = User_details.objects.get(auth_user=request.user)
 
-    # user_data = User_details.objects.get(auth_user = request.user)
-    # print("user_data:::",user_data)
-    # user_company = user_data.company_id
-
-    # if user is navab sir (all space)
-    space_master_data = space_master.objects.filter(added_user_id=request.user)
+        # if user is company_admin (navab sir (all space of him))
+        if userdetails_data.user_type == "company_admin":
+            space_master_data = space_master.objects.filter(added_user_id=request.user)
+    
+        else:
+            # if user is company_user(their space only)
+            space_access_data = space_access_permission_user.objects.get(invite_user_auth_id=request.user)
+            space_master_data = space_master.objects.filter(id=space_access_data.space_id.id)
+    except:
+        pass
 
     context = {
         "member_data" : member_data,
         "data":data,
         "space_master_data":space_master_data
     }
-    
     return render(request,"role_management.html",context)
 
-
-def returnFalse(value):
-    if value == '':
-        return False
-    else:
-        value
 
 def role_management_action(request):
     if request.method == "POST":
