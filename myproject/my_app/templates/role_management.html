@@ -1,0 +1,325 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container-fluid mt-4" style="background-color:white;float: right;
+padding: 4px 36px;
+margin: 7px 13px;">
+    <!-- Page-Title -->
+    <a   data-bs-toggle="modal" class="btn btn-primary mt-2" data-bs-target="#add_role_modal"> New </a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="page-title prjct">Role Management</h4>
+                    </div>
+                    <!--end col-->
+
+                </div>
+                <!--end row-->
+            </div>
+            <!--end page-title-box-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
+    <!-- end page title end breadcrumb -->
+
+    <div class="card-box ">
+        <div class="card-box ">
+            <div class="table_rspnsv" id="tableview">
+                <div class="row2 tbl_stngs commen_table">
+                    <table id="datatable3" class="table table-bordered dt-responsive nowrap table-hover" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>Role name</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                        <tr>
+                            
+                            <td>{{i.role_name}}</td>
+                            <td>
+                                {{i.description}}
+                            </td>
+                           
+                            <td>
+                                <a data-id="{{i.id}}"  class="label-default user-edit-action" href="#"> <i class="fas fa-edit"></i></a>                               
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end row-->
+    
+</div><!-- container -->
+
+<div class="modal fade" id="add_role_modal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalDefaultLogin" aria-hidden="true">
+<form name="role_form" method="POST" action="role_management_action">
+    {% csrf_token %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <input type="hidden" name="user_type" value="company_staff">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalDefaultLogin">Add Role</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!--end modal-header-->
+        <div class="modal-body">
+            <div class="card-body p-0 auth-header-box">
+            </div>
+            <div class="card-body p-0">
+                <div class="form-group my-4">
+                    <label class="form-label" for="tax_no">Name</label>
+                    <div class="input-group">
+                        <input type="text"  required class="form-control" name="name" id="name">
+                            
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="email">Description</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" required name="description" id="description">
+                         
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <!-- Role_design -->
+
+                <div class="row">
+                    <div class="">
+                        <div class="">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bgcolr1">
+                                    <th>Nav Name</th>
+                                    <th>Read</th>
+                                    <th>Write</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                    <th>View All</th>
+                                    <th>Manage All</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+                                    <th style="font-weight: 400;
+                                    font-size: 11px;">Company</th>
+                                    <td>
+                                        <div class="checkbox m-2">
+                                            <input id="company_read" name="company_read" type="checkbox" value="True">
+                                            
+                                            <label for="company_read"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="company_write" name="company_write" value="True">
+                                            <label for="company_write"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="company_edit" id="company_edit" value="True">
+                                            <label for="company_edit"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="company_delete" id="company_delete" value="True">
+                                            <label for="company_delete"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox"  name="company_view_all" id="company_view_all" value="True">
+                                            <label for="company_view_all"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="company_manage_all" id="company_manage_all" value="True">
+                                            <label for="company_manage_all"></label>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th style="font-weight: 400;
+                                    font-size: 11px;">User management</th>
+                                    <td>
+                                        <div class="checkbox m-2">
+                                            <input type="checkbox" name="user_read" id="user_read" value="True">
+                                            <label for="user_read"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="user_write" id="user_write" value="True">
+                                            <label for="user_write"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="user_edit" id="user_edit" value="True">
+                                            <label for="user_edit"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="user_delete" id="user_delete" value="True">
+                                            <label for="user_delete"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="user_view_all" id="user_view_all" value="True">
+                                            <label for="user_view_all"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="user_manage_all" id="user_manage_all" value="True">
+                                            <label for="user_manage_all"></label>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th>Role</th>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="role_read" id="role_read" value="True">
+                                            <label for="role_read"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="role_write" id="role_write" value="True">
+                                            <label for="role_write"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="role_edit" id="role_edit" value="True">
+                                            <label for="role_edit"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="role_delete" id="role_delete" value="True">
+                                            <label for="role_delete"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="role_view_all" id="role_view_all" value="True">
+                                            <label for="role_view_all"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="role_manage_all" id="role_manage_all" value="True">
+                                            <label for="role_manage_all"></label>
+                                        </div>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <th style="font-weight: 400;
+                                    font-size: 11px;">Team member</th>
+                                    <td>
+                                        <div class="checkbox m-2">
+                                            <input type="checkbox" name="team_member_read" id="team_member_read" value="True">
+                                            <label for="team_member_read"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="team_member_write" id="team_member_write" value="True">
+                                            <label for="team_member_write"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="team_member_edit" id="team_member_edit" value="True">
+                                            <label for="team_member_edit"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="team_member_delete" id="team_member_delete" value="True">
+                                            <label for="team_member_delete"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="team_member_view_all" id="team_member_view_all" value="True">
+                                            <label for="team_member_view_all"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="team_member_manage_all" id="team_member_manage_all" value="True">
+                                            <label for="team_member_manage_all"></label>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+                <div class="form-group mb-2 row mt-4">
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Add New Role
+                           <i class="fas fa-sign-in-alt ms-1"></i></button>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end form-group-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end modal-body-->
+    </div>
+    </form>
+    <!--end modal-content-->
+</div>
+<!--end modal-dialog-->
+</div>
+
+{% endblock %}

@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<link href="{% static 'css/dataTables.bootstrap4.min.css' %}">
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+
+<script>
+  
+</script>
+
+
+<div class="container-fluid mt-4" style="background-color:white;float: right;
+padding: 4px 36px;
+margin: 7px 13px;">
+    <!-- Page-Title -->
+    <a   data-bs-toggle="modal" class="btn btn-primary mt-2" data-bs-target="#add_company_modal"> New </a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="page-title prjct">Company Management</h4>
+
+                    </div>
+                    <!--end col-->
+
+                </div>
+                <!--end row-->
+            </div>
+            <!--end page-title-box-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
+    <!-- end page title end breadcrumb -->
+
+    <div class="card-box ">
+        <div class="card-box ">
+            <div class="table_rspnsv" id="tableview">
+                <div class="row2 tbl_stngs commen_table">
+
+                    <table id="datatable3" class="table table-bordered dt-responsive nowrap table-hover" style="width: 100%;">
+
+                        <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Company Name</th>
+                            <th>Mobile No</th>
+                            <th>Website</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                          
+                        <tr>
+                            <td>
+                                <img  style="width:55px;height:55px;border-radius: 50%;" src="./media/{{i.company_logo}}">
+                             
+                            </td>
+                            <td>
+                                {{i.company_name}}
+                            </td>
+                            <td>
+                                {{i.mobile}} 
+                            </td>
+                            <td>
+                                {{i.website}} 
+                            </td>
+                            <td>
+                                {{i.email}} 
+                            </td>
+                            <td>
+                                {{i.address}} 
+                            </td>
+                            <td>
+                                <a data-id="{{i.id}}"  class="label-default company-edit-action" href="#"> <i class="fas fa-edit"></i></a>                               
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+                      
+                      
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end row-->
+
+
+
+
+</div><!-- container -->
+
+
+
+
+
+
+
+<form name="comany_form" method="POST" action="comapny_add_action" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<div class="modal fade" id="add_company_modal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalDefaultLogin" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalDefaultLogin">Add Company</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!--end modal-header-->
+        <div class="modal-body">
+            <div class="card-body p-0 auth-header-box">
+
+            </div>
+            <div class="card-body p-0">
+
+                <div class="form-group mb-4">
+                    <label class="form-label" for="company_name">Company Name</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="companyname" id="company_name"
+                            placeholder="Enter Company Name">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="logo">Logo</label>
+                    <div class="input-group">
+                        <input  required type="file" class="form-control" name="logo" id="logo"
+                            placeholder="Enter Logo Name">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="tax_no">Tax no</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="tax_no" id="tax_no"
+                            placeholder="Enter Tax no">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="mobile_no">Mobile no</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="mobile_no" id="mobile_no"
+                            placeholder="Enter Mobile no">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="website">Website</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="website" id="website"
+                            placeholder="Enter Website">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="phone">Phone</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="phone" id="phone"
+                            placeholder="Enter Phone">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="Enter Email">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="email">Address</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="address" id="address"
+                            placeholder="Enter Address">
+                    </div>
+                </div>
+                <!--end form-group-->
+                
+                <div class="form-group mb-2 row">
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Update Company
+                           <i class="fas fa-sign-in-alt ms-1"></i></button>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end form-group-->
+
+
+
+
+            </div>
+            <!--end card-body-->
+
+        </div>
+        <!--end modal-body-->
+
+    </div>
+    <!--end modal-content-->
+</div>
+<!--end modal-dialog-->
+</div>
+</form>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script> -->
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Default Datatable
+        $('#datatable3').DataTable();
+        $('#responsive-datatable').DataTable();
+    });
+</script>
+<div id="company_edit_div">
+
+</div>
+
+<script>
+$(".company-edit-action").click(function(){
+   
+      
+    var id = $(this).attr("data-id")
+    var url ="company_edit_modal_function";  // get the url of the `load_cities` view
+      
+  $.ajax({                       // initialize an AJAX request
+    url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+    data: {
+      'id': id       // add the country id to the GET parameters
+    },
+    success: function (data) {   // `data` is the return of the `load_cities` view function
+      $("#company_edit_div").html(data);  // replace the contents of the city input with the data that came from the server
+ 
+      $("#editcompany").modal("show")
+
+    }
+  });
+
+})
+</script>
+
+<style>
+    .swal2-title{
+        font-size: 12px!important;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+<script>
+    {% for message in messages %}
+ 
+
+    var toastMixin = Swal.mixin({
+    toast: true,
+    icon: '{{message.tags}}',
+    title: 'General Title',
+    animation: false,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    });
+    toastMixin.fire({
+    animation: true,
+    title: "{{message}}"
+    });
+    {% endfor %}
+
+</script>
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

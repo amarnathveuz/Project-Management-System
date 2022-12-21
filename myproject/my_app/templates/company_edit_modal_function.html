@@ -1,0 +1,115 @@
+<form name="comany_form2" method="POST" action="company_update_action" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<div class="modal fade" id="editcompany" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalDefaultLogin" aria-hidden="true">
+<input type="hidden" name="id" value="{{data.id}}">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalDefaultLogin">Add Company</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!--end modal-header-->
+        <div class="modal-body">
+            <div class="card-body p-0 auth-header-box">
+
+            </div>
+            <div class="card-body p-0">
+
+                <div class="form-group mb-4">
+                    <label class="form-label" for="company_name">Company Name</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.company_name}}" class="form-control" name="companyname" id="company_name"
+                            placeholder="Enter Company Name">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="logo">Logo</label>
+                    <div class="input-group">
+                        <input required type="file" class="form-control" name="logo" id="logo"
+                            placeholder="Enter Logo Name">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="tax_no">Tax no</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.tax_number}}" class="form-control" name="tax_no" id="tax_no"
+                            placeholder="Enter Tax no">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="mobile_no">Mobile no</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.mobile}}" class="form-control" name="mobile_no" id="mobile_no"
+                            placeholder="Enter Mobile no">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="website">Website</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.website}}" class="form-control" name="website" id="website"
+                            placeholder="Enter Website">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="phone">Phone</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.phone}}" class="form-control" name="phone" id="phone"
+                            placeholder="Enter Phone">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-group">
+                        <input type="email" value="{{data.email}}" class="form-control" name="email" id="email"
+                            placeholder="Enter Email">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="address">Address</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.address}}" class="form-control" name="address" id="address"
+                            placeholder="Enter Address">
+                    </div>
+                </div>
+                <!--end form-group-->
+                
+                <div class="form-group mb-2 row">
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Update Company
+                           <i class="fas fa-sign-in-alt ms-1"></i></button>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end form-group-->
+
+
+
+
+            </div>
+            <!--end card-body-->
+
+        </div>
+        <!--end modal-body-->
+
+    </div>
+    <!--end modal-content-->
+</div>
+<!--end modal-dialog-->
+</div>
+</form>

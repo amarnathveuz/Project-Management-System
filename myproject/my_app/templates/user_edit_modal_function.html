@@ -1,0 +1,148 @@
+<form name="comany_form" method="POST" action="user_update_action" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<div class="modal fade" id="edituser" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalDefaultLogin" aria-hidden="true">
+<input type="hidden" name="id" value="{{data.id}}">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalDefaultLogin">Add User</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!--end modal-header-->
+        <div class="modal-body">
+            <div class="card-body p-0 auth-header-box">
+
+            </div>
+            <div class="card-body p-0">
+
+                <div class="form-group mb-4">
+                    <label class="form-label" for="company_name">Company Name</label>
+                    <div class="input-group">
+                        <input type="text" readonly required class="form-control" value="{{data.company_name}}" name="companyname" id="company_name"
+                            placeholder="Enter Company Name">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="logo">Photo</label>
+                    <div class="input-group">
+                        <input  required type="file"  class="form-control" name="photo" id="logo"
+                            >
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="tax_no">Name</label>
+                    <div class="input-group">
+                        <input type="text"  value="{{data.name}}" required class="form-control" name="name" id="tax_no"
+                            >
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="mobile_no">Username</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.username}}" required class="form-control" name="username" id="mobile_no">
+                            
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="website">Do you want to change your Password</label>
+                    <div>
+                        <input type="radio"  id="Yes"  name="password_option" value="yes">&nbsp;&nbsp;Yes
+                    </div>
+                    <div>
+                        <input type="radio" id="No"  name="password_option" value="no">&nbsp;&nbsp;No
+                    </div>       
+                       
+                          
+                    </div>
+                </div>
+                <!--end form-group-->
+
+
+                <div style="display:none;" id="new_password" class="form-group my-4">
+                    <label class="form-label" for="phone">Password</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.password}}" class="form-control" name="password" id="phone"
+                            placeholder="Enter Password">
+                    </div>
+                </div>
+
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="phone">Phone</label>
+                    <div class="input-group">
+                        <input type="text" value="{{data.phone}}" class="form-control" name="phone" id="phone"
+                            placeholder="Enter Phone">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-group">
+                        <input type="email" value="{{data.email}}" class="form-control" required name="email" id="email"
+                            placeholder="Enter Email">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                
+
+                <!--end form-group-->
+                
+                <div class="form-group mb-2 row">
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Add User
+                           <i class="fas fa-sign-in-alt ms-1"></i></button>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end form-group-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end modal-body-->
+    </div>
+    <!--end modal-content-->
+</div>
+<!--end modal-dialog-->
+</div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- <script>
+    $(document).ready(function() {
+        Manual = document.getElementById("Manual");
+        alert(Manual.checked)
+            if (Manual.checked == true){
+                $("#password2").show()
+            }
+            else{
+                $("#password2").hide()
+            }
+
+        Automatic = document.getElementById("Automatic");
+        if (Automatic.checked == true){
+            $("#password2").hide()
+        }
+       
+    })
+</script> -->
+
+<script>
+    $("#Yes").click(function(){   
+        $("#new_password").show()
+    })
+    $("#No").click(function(){
+    $("#new_password").hide()
+    })
+</script>
