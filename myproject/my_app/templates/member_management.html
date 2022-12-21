@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'css/dataTables.bootstrap4.min.css' %}">
+<script src="{% static 'js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+
+<div class="container-fluid mt-4" style="background-color:white;float: right;
+padding: 4px 36px;
+margin: 7px 13px;">
+    <!-- Page-Title -->
+    <a   data-bs-toggle="modal" class="btn btn-primary mt-2" data-bs-target="#add_user_modal"> New </a>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="page-title prjct">Member Management</h4>
+
+                    </div>
+                    <!--end col-->
+
+                </div>
+                <!--end row-->
+            </div>
+            <!--end page-title-box-->
+        </div>
+        <!--end col-->
+    </div>
+    <!--end row-->
+    <!-- end page title end breadcrumb -->
+
+    <div class="card-box ">
+        <div class="card-box ">
+            <div class="table_rspnsv" id="tableview">
+                <div class="row2 tbl_stngs commen_table">
+
+                    <table id="datatable3" class="table table-bordered dt-responsive nowrap table-hover" style="width: 100%;">
+                        <thead>
+                        <tr>
+                            <th>Logo</th>
+                            <th>Name</th>
+                            <th>Company Name</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in member_data %}
+                          
+                        <tr>
+                            <td>
+                                <img  style="width:55px;height:55px;border-radius: 50%;" src="./media/{{i.photo}}">
+                            </td>
+                            <td>{{i.name}}</td>
+                            <td>
+                                {{i.company_name}}
+                            </td>
+                            <td>
+                                {{i.username}} 
+                            </td>
+                            <td>
+                                {{i.password}} 
+                            </td>
+                            <td>
+                                {{i.phone}} 
+                            </td>
+                            <td>
+                                {{i.email}} 
+                            </td>
+                            <td>
+                                <a data-id="{{i.id}}"  class="label-default user-edit-action" href="#"> <i class="fas fa-edit"></i></a>                               
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+                      
+                      
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end row-->
+    
+</div><!-- container -->
+
+<div class="modal fade" id="add_user_modal" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalDefaultLogin" aria-hidden="true">
+<form name="comany_form" method="POST" action="user_management_action" enctype="multipart/form-data">
+    {% csrf_token %}
+
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <input type="hidden" name="user_type" value="company_staff">
+        <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalDefaultLogin">Add User</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!--end modal-header-->
+        <div class="modal-body">
+            <div class="card-body p-0 auth-header-box">
+
+            </div>
+            <div class="card-body p-0">
+
+            
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="logo">Photo</label>
+                    <div class="input-group">
+                        <input  required type="file" class="form-control" name="photo" id="logo"
+                            >
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="tax_no">Name</label>
+                    <div class="input-group">
+                        <input type="text"  required class="form-control" name="name" id="tax_no"
+                            >
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="mobile_no">Username</label>
+                    <div class="input-group">
+                        <input type="text" required class="form-control" name="username" id="mobile_no">
+                            
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="website">Password Option</label>
+                    <div>
+                        <input type="radio" id="Manual"  name="password_option" value="Manual">&nbsp;&nbsp;Manual
+                    </div>
+                    <div>
+                        <input type="radio" id="Automatic"  name="password_option" value="Automatic">&nbsp;&nbsp;Automatic
+
+                    </div>       
+                       
+                          
+                    </div>
+                </div>
+                <!--end form-group-->
+
+
+                <div style="display:none;" id="password2" class="form-group my-4">
+                    <label class="form-label" for="phone">Password</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="password" id="phone"
+                            placeholder="Enter Password">
+                    </div>
+                </div>
+
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="phone">Phone</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="phone" id="phone"
+                            placeholder="Enter Phone">
+                    </div>
+                </div>
+                <!--end form-group-->
+
+                <div class="form-group my-4">
+                    <label class="form-label" for="email">Email</label>
+                    <div class="input-group">
+                        <input type="email" class="form-control" required name="email" id="email"
+                            placeholder="Enter Email">
+                    </div>
+                </div>
+                <!--end form-group-->
+                <div class="row expirationbox mt-4">
+                    <div class="col-20">
+                        <div class="row">
+                            <h4 class="modal_sub_hdng">Roles</h4>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="form-group">  <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                           {% for role in  role_data %}
+                                <option value="{{role.id}}">{{role.role_name}}</option>
+                           {% endfor %}
+                        </select> </div>
+                    </div> -->
+                    <style>
+                        .th_user_role {
+                        width: 100%;
+                    }
+                    </style>
+                    <div class="col-12 ">
+                        <div class="container-fluid">
+                            <table class="table scrolbaletable" border="2" style="border: 1px solid #ccc; width:107%;">
+                                <tr>
+                                    <th class="th_btnpand">
+                                        <div class="appnd_user_btn append_btn" style="cursor: pointer;">+</div>
+                                    </th>
+                                    <th  class="th_user_role">Role</th>
+                                    <th class="th_user_decrptn">Description</th>
+                                    <th class="th_user_strtdate">Start Date</th>
+                                    <th class="th_user_enddate">End Date</th>
+                                </tr>
+                                <tbody class="apenduser">
+                                <tr>
+                                    <td class="th_btnpand">
+                                        <div class="appnd_user_minus_btn appnd_minus_btn" style="cursor: pointer;">-</div>
+                                    </td>
+                                    <td class="th_user_role">
+                                        <select class="form-control" name="role_id[]">
+                                            {% for role in  role_data %}
+                                            <option value="{{role.id}}">{{role.role_name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </td>
+                                    <td class="th_user_decrptn">
+                                        <input name="role_description[]" class="form-control">
+                                    </td>
+                                    <td class="th_user_strtdate">
+                                        <div class="input-group date">
+                                            <input  name="role_start_dt[]" value="{{today|safe}}" type="date" class="input form-control" >
+                                        </div>
+                                    </td>
+                                    <td class="th_user_enddate">
+                                        <div class="input-group date">
+                                            <input  name="role_end_dt[]" type="date"  class="input form-control">
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end form-group-->
+                
+                <div class="form-group mb-2 row">
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Add New Member
+                           <i class="fas fa-sign-in-alt ms-1"></i></button>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end form-group-->
+            </div>
+            <!--end card-body-->
+        </div>
+        <!--end modal-body-->
+    </div>
+    </form>
+    <!--end modal-content-->
+</div>
+<!--end modal-dialog-->
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script> -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        // Default Datatable
+        $('#datatable3').DataTable();
+        $('#responsive-datatable').DataTable();
+    });
+</script>
+<div id="user_edit_div">
+
+</div>
+
+<script>
+$(".user-edit-action").click(function(){
+   
+    var id = $(this).attr("data-id")
+    var url ="user_edit_modal_function"; 
+      
+  $.ajax({                       
+    url: url,                   
+    data: {
+      'id': id      
+    },
+    success: function (data) {  
+      $("#user_edit_div").html(data); 
+      $("#edituser").modal("show")
+
+    }
+  });
+
+})
+</script>
+    
+
+<script>
+$("#Manual").click(function(){
+   
+    $("#password2").show()
+})
+$("#Automatic").click(function(){
+    $("#password2").hide()
+})
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $(".appnd_user_btn").click(function() {
+    
+    
+        $(".apenduser").append("<tr>\n" +
+            "                                    <td class=\"th_btnpand\">\n" +
+            "                                        <div style=\"cursor: pointer;\" class=\"appnd_user_minus_btn appnd_minus_btn\">-</div>\n" +
+            "                                    </td>\n" +
+            "                                    <td class=\"th_user_role\">\n" +
+            "                                        <select name=\"role_id[]\" class=\"form-control\">\n" +
+            "                                            {% for role in  role_data %}\n" +
+            "                                           <option value=\"{{role.id}}\">{{role.role_name}}</option>\n" +
+            "                                           {% endfor %}\n" +
+            "                                        </select>\n" +
+            "                                    </td>\n" +
+            "                                    <td class=\"th_user_decrptn\">\n" +
+            "                                        <input name=\"role_description[]\" class=\"form-control\">\n" +
+            "                                    </td>\n" +
+            "                                 <td class=\"th_user_strtdate\">\n" +
+            "                                        <div class=\"input-group date\">\n" +
+            "                                            <input name=\"role_start_dt[]\" value=\"{{today|safe}}\" type=\"date\" class=\"input form-control\" id=\"datetimepicker\"> \n" +
+            "                                        </div>\n" +
+            "                                    </td>\n" +
+            "                                    <td class=\"th_user_enddate\">\n" +
+            "                                        <div class=\"input-group date\">\n" +
+            "                                            <input name=\"role_end_dt[]\" type=\"date\"  class=\"input form-control\" id=\"datetimepicker\"> \n" +
+            "                                        </div>\n" +
+            "                                    </td>\n" +
+                                               
+            "                                </tr>");
+        $(".appnd_user_minus_btn").click(function() {
+            $(this).parent().parent().remove();
+        });
+    });
+    });
+    </script>
+
+
+
+
+
+
+
+
+<style>
+    .swal2-title{
+        font-size: 12px!important;
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+<script>
+    {% for message in messages %}
+ 
+
+    var toastMixin = Swal.mixin({
+    toast: true,
+    icon: '{{message.tags}}',
+    title: 'General Title',
+    animation: false,
+    position: 'top-right',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    });
+    toastMixin.fire({
+    animation: true,
+    title: "{{message}}"
+    });
+    {% endfor %}
+
+</script>
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

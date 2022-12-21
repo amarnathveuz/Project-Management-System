@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Veuz - Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.svg">
+
+    <link href="plugins/leaflet/leaflet.css" rel="stylesheet">
+    <link href="plugins/lightpick/lightpick.css" rel="stylesheet" />
+
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/metisMenu.min.css" rel="stylesheet" type="text/css" />
+    <link href="plugins/daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <!-- Left Sidenav -->
+    <div class="left-sidenav">
+        <!-- LOGO -->
+        <div class="brand">
+            <a href="index.html" class="logo">
+                <span>
+                    <img src="assets/images/veuzlogo.png" alt="logo-small" class="logo-sm">
+                </span>
+                <span>
+                    <img src="assets/images/veuzlogo.png" alt="logo-large" class="logo-lg logo-light">
+
+                </span>
+            </a>
+        </div>
+        <!--end logo-->
+        <div class="menu-content h-100" data-simplebar>
+            <ul class="metismenu left-sidenav-menu">
+                <li class="menu-label mt-0">MENU</li>
+                <li>
+                    <a href="index.html"> <i data-feather="home"
+                            class="align-self-center menu-icon"></i><span>Dashboard</span><span
+                            class="menu-arrow"></span></a>
+
+                </li>
+
+                <li>
+                    <a href="apps-chat.html"> <i data-feather="message-square"
+                            class="align-self-center menu-icon"></i><span>Chat</span><span
+                            class="menu-arrow"></span></a>
+
+                </li>
+
+                <li>
+                    <a href="apps-calendar.html"> <i data-feather="calendar"
+                            class="align-self-center menu-icon"></i><span>Calendar</span><span
+                            class="menu-arrow"></span></a>
+
+                </li>
+
+                <hr class="hr-dashed hr-menu">
+                <li class="menu-label my-2">Work Space</li>
+
+                <li>
+                    <div class="new-space" data-bs-toggle="modal" data-bs-target="#exampleModalspace"><span><i class="mdi mdi-plus"></i> New Space</span></div>
+                </li>
+
+                <li class="plus">
+                    <a href="apps-space.html"><i data-feather="grid"
+                            class="align-self-center menu-icon"></i><span>Space 1</span><a
+                            class="menu-plus dropdown-toggle pls" id="drop2" data-bs-toggle="dropdown" role="button"
+                            aria-haspopup="false" aria-expanded="false"><i class="mdi mdi-plus"></i></a></a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop2">
+
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalLogin">New
+                            Folder</a>
+                        <!-- <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalList">New
+                            List</a> -->
+                        <a class="dropdown-item" href="#">Edit</a>
+                    </div>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li class="plus1">
+                            <a href="apps-project.html"><i data-feather="folder"
+                                    class="align-self-center menu-icon"></i>Project Management <a
+                                    class="menu-plus dropdown-toggle pls1" id="drop3" data-bs-toggle="dropdown"
+                                    role="button" aria-haspopup="false" aria-expanded="false"><i
+                                        class="mdi mdi-plus"></i></a></a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="drop3">
+                                <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalList">New List</a>
+                                <a class="dropdown-item" href="#">Edit</a>
+                            </div>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="apps-strategy.html"><i class="ti-control-record"></i>Phase 1 : Strategy</a>
+                                </li>
+                                <li><a href="apps-design.html"><i class="ti-control-record"></i>Phase 2 : Design</a>
+                                </li>
+                                <li><a href="apps-develop.html"><i class="ti-control-record"></i>Phase 3 :
+                                        Development</a></li>
+                                <li><a href="apps-execution.html"><i class="ti-control-record"></i>Phase 4 :
+                                        Execution</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </div>
+    <!-- end left-sidenav-->
+
+
+    <div class="modal fade" id="exampleModalLogin" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalDefaultLogin" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalDefaultLogin">Create Folder</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!--end modal-header-->
+                <div class="modal-body">
+                    <div class="card-body p-0 auth-header-box">
+
+                    </div>
+                    <div class="card-body p-0">
+
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="foldername">Folder Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="foldername" id="foldername"
+                                    placeholder="Enter Folder Name">
+                            </div>
+                        </div>
+                        <!--end form-group-->
+
+                        <div class="form-group my-4">
+                            <label class="form-label" for="listname">List Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="listname" id="listname"
+                                    placeholder="Enter List Name">
+                            </div>
+                        </div>
+                        <!--end form-group-->
+
+                        <div class="form-group my-4">
+                            <div class="row">
+                                <label class="form-label" for="share">Share Folder with</label>
+                                <div class="col-sm-9">
+
+                                    <div class="input-group">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control"
+                                                placeholder="Invite people or share by name or email"
+                                                aria-label="Recipient's username" aria-describedby="button-addon2">
+                                            <button class="btn btn-primary" type="button"
+                                                id="button-addon2">Go!</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <button type="button" class="btn btn-outline-sec btn-clipboard w-100"
+                                        data-clipboard-action="copy" data-clipboard-target="#clipboardParagraph"><i
+                                            class="far fa-copy copylink"></i>Copy Link</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!--end form-group-->
+
+                        <div class="form-group my-4">
+                            <label class="form-label" for="taskstatus">What task statuses do you want?</label>
+                            <div class="col-md-12 status">
+                                <div class="form-check form-check-inline">
+
+                                    <div class="radio">
+                                        <input type="radio" name="radio" id="radio1" value="option1" checked=""
+                                            class="form-check-input">
+                                        <label for="radio1">
+                                            To Do
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <div class="radio radio-info">
+                                        <input type="radio" name="radio" id="radio2" value="option2"
+                                            class="form-check-input">
+                                        <label for="radio2">
+                                            In Progress
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="form-check form-check-inline">
+
+                                    <div class="radio radio-purple">
+                                        <input type="radio" name="radio" id="radio3" value="option3"
+                                            class="form-check-input">
+                                        <label for="radio3">
+                                            Ready
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <div class="radio radio-success">
+                                        <input type="radio" name="radio" id="radio4" value="option4"
+                                            class="form-check-input">
+                                        <label for="radio4">
+                                            Complete
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--end form-group-->
+
+                        <div class="form-group mb-2 row">
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 waves-effect waves-light" type="button">Create
+                                    Folder <i class="fas fa-sign-in-alt ms-1"></i></button>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <!--end form-group-->
+
+
+
+
+                    </div>
+                    <!--end card-body-->
+
+                </div>
+                <!--end modal-body-->
+
+            </div>
+            <!--end modal-content-->
+        </div>
+        <!--end modal-dialog-->
+    </div>
+    <!--end modal-->
+
+    <div class="modal fade" id="exampleModalList" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultList"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title" id="exampleModalDefaultList">Create List</h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!--end modal-header-->
+                <div class="modal-body">
+                    <div class="card-body p-0 auth-header-box">
+
+                    </div>
+                    <div class="card-body p-0">
+
+                        <div class="form-group mb-4">
+                            <label class="form-label" for="listname">List name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="listname" id="listname"
+                                    placeholder="Enter List Name">
+                            </div>
+                        </div>
+                        <!--end form-group-->
+
+
+
+
+
+                        <div class="form-group mb-2 row">
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 waves-effect waves-light" type="button">Create
+                                    List <i class="fas fa-sign-in-alt ms-1"></i></button>
+                            </div>
+                            <!--end col-->
+                        </div>
+                        <!--end form-group-->
+
+
+
+
+                    </div>
+                    <!--end card-body-->
+
+                </div>
+                <!--end modal-body-->
+
+            </div>
+            <!--end modal-content-->
+        </div>
+        <!--end modal-dialog-->
+    </div>
+    <!--end modal-->
+
+    <div class="modal fade" id="exampleModalspace" tabindex="-1" role="dialog" aria-labelledby="exampleModalDefaultList"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title" id="exampleModalDefaultList">Create Space</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!--end modal-header-->
+            <div class="modal-body">
+                <div class="card-body p-0 auth-header-box">
+
+                </div>
+                <div class="card-body p-0">
+
+                    <div class="form-group mb-4">
+                        <label class="form-label" for="spacename">Space name</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="spacename" id="spacename"
+                                placeholder="Enter Space Name">
+                        </div>
+                    </div>
+                    <!--end form-group-->
+
+
+
+
+
+                    <div class="form-group mb-2 row">
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 waves-effect waves-light" type="button">Create
+                                Space <i class="fas fa-sign-in-alt ms-1"></i></button>
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end form-group-->
+
+
+
+
+                </div>
+                <!--end card-body-->
+
+            </div>
+            <!--end modal-body-->
+
+        </div>
+        <!--end modal-content-->
+    </div>
+    <!--end modal-dialog-->
+</div>
+<!--end modal-->
+
+    <div class="page-wrapper">
+        <div class="jss44524">
+            <div class="jss44528 jss44529 jss44526"><img
+                    src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIyLjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAzMDAgNDcuMSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAwIDQ3LjE7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5zdDB7ZmlsbDojRkFGQUZBO30KPC9zdHlsZT4KPHBhdGggY2xhc3M9InN0MCIgZD0iTTMwMCw0Ni45TDAsNDcuMVY4LjljMCwwLDIxLjEsMTQuMyw2NS4yLDE0LjFjNDAuNi0wLjIsNzYuNC0yMywxMjgtMjNDMjQzLjMsMCwzMDAsMTYuNCwzMDAsMTYuNFY0Ni45eiIvPgo8L3N2Zz4K"
+                    alt="decoration" class="jss44531"></div>
+        </div>
+        <!-- Top Bar Start -->
+        <div class="topbar">
+            <!-- Navbar -->
+            <nav class="navbar-custom">
+                <ul class="list-unstyled topbar-nav float-end mb-0">
+                    <li class="dropdown hide-phone">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect"
+                            data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                            aria-expanded="false">
+                            <i data-feather="search" class="topbar-icon"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end dropdown-lg p-0">
+                            <!-- Top Search Bar -->
+                            <div class="app-search-topbar">
+                                <form action="#" method="get">
+                                    <input type="search" name="search" class="from-control top-search mb-0"
+                                        placeholder="Type text...">
+                                    <button type="submit"><i class="ti-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li> <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-bs-toggle="modal"
+                            data-bs-target="#addUser">
+                            <i data-feather="user-plus" class="topbar-icon"></i>
+                        </a></li>
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect"
+                            data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+                            aria-expanded="false">
+                            <i data-feather="bell" class="align-self-center topbar-icon"></i>
+                            <span class="badge bg-danger rounded-pill noti-icon-badge">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
+
+                            <h6
+                                class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
+                                Notifications <span class="badge bg-primary rounded-pill">2</span>
+                            </h6>
+                            <div class="notification-menu" data-simplebar>
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">2 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="assets/images/users/user-8.jpg" alt=""
+                                                class="thumb-sm rounded-circle">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Alex accepted your invitation</h6>
+                                            <small class="text-muted mb-0">Dummy text Dummy text Dummy text.</small>
+                                        </div>
+                                        <!--end media-body-->
+                                    </div>
+                                    <!--end media-->
+                                </a>
+                                <!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">10 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="assets/images/users/user-4.jpg" alt=""
+                                                class="thumb-sm rounded-circle">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Meeting with designers</h6>
+                                            <small class="text-muted mb-0">Dummy text Dummy text Dummy text.</small>
+                                        </div>
+                                        <!--end media-body-->
+                                    </div>
+                                    <!--end media-->
+                                </a>
+                                <!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">40 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i data-feather="users" class="align-self-center icon-xs"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">UX 3 Task complete.</h6>
+                                            <small class="text-muted mb-0">Dummy text Dummy text Dummy text.</small>
+                                        </div>
+                                        <!--end media-body-->
+                                    </div>
+                                    <!--end media-->
+                                </a>
+                                <!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">1 hr ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="assets/images/users/user-5.jpg" alt=""
+                                                class="thumb-sm rounded-circle">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                            <small class="text-muted mb-0">It is a long established fact that a
+                                                reader.</small>
+                                        </div>
+                                        <!--end media-body-->
+                                    </div>
+                                    <!--end media-->
+                                </a>
+                                <!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">2 hrs ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i data-feather="check-circle" class="align-self-center icon-xs"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Payment Successfull</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing.</small>
+                                        </div>
+                                        <!--end media-body-->
+                                    </div>
+                                    <!--end media-->
+                                </a>
+                                <!--end-item-->
+                            </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                View all <i class="fi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown"
+                            href="#" role="button" aria-haspopup="false" aria-expanded="false">
+
+                            <img src="assets/images/users/user-5.jpg" alt="profile-user"
+                                class="rounded-circle thumb-xs" />
+                            <span class="ms-1 nav-user-name hidden-sm">Muhammad Navab</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="#"><i data-feather="user"
+                                    class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i data-feather="settings"
+                                    class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
+                            <div class="dropdown-divider mb-0"></div>
+                            <a class="dropdown-item" href="#"><i data-feather="power"
+                                    class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+                <!--end topbar-nav-->
+
+                <ul class="list-unstyled topbar-nav mb-0">
+                    <li>
+                        <button class="nav-link button-menu-mobile">
+                            <i data-feather="menu" class="align-self-center topbar-icon"></i>
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- end navbar-->
+        </div>
+        <!-- Top Bar End -->
+
+        <!-- Page Content-->
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="row">
+                                <div class="col">
+                                    <h4 class="page-title prjct">Profile</h4>
+
+                                </div>
+                                <!--end col-->
+
+                            </div>
+                            <!--end row-->
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+                <!-- end page title end breadcrumb -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <div id="user_map" class="pro-map" style="height: 220px"></div>
+                            </div>
+                            <!--end card-body-->
+                            <div class="card-body">
+                                <div class="dastone-profile">
+                                    <div class="row">
+                                        <div class="col-lg-4 align-self-center mb-3 mb-lg-0">
+                                            <div class="dastone-profile-main">
+                                                <div class="dastone-profile-main-pic">
+                                                    <img src="assets/images/users/user-5.jpg" alt="" height="110"
+                                                        class="rounded-circle">
+                                                    <span class="dastone-profile_main-pic-change">
+                                                        <i class="fas fa-camera"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="dastone-profile_user-detail">
+                                                    <h5 class="dastone-user-name">Muhammad Navab</h5>
+                                                    <p class="mb-0 dastone-user-name-post">Owner</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end col-->
+
+                                        <div class="col-lg-4 ms-auto align-self-center">
+                                            <ul class="list-unstyled personal-detail mb-0">
+                                                <li class=""><i
+                                                        class="ti ti-mobile me-2 text-secondary font-16 align-middle"></i>
+                                                    <b> phone </b> : +91 23456 78910</li>
+                                                <li class="mt-2"><i
+                                                        class="ti ti-email text-secondary font-16 align-middle me-2"></i>
+                                                    <b> Email </b> : muhammadnavab@gmail.com</li>
+                                                <li class="mt-2"><i
+                                                        class="ti ti-world text-secondary font-16 align-middle me-2"></i>
+                                                    <b> Website </b> :
+                                                    <a href="https://mannatthemes.com/"
+                                                        class="font-14 text-primary">https://veuzconcepts.com</a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+                                        <!--end col-->
+                                        <div class="col-lg-4 align-self-center">
+                                            <div class="row">
+                                                <div class="col-auto text-end border-end">
+                                                    <button type="button"
+                                                        class="btn btn-soft-info btn-icon-circle btn-icon-circle-sm mb-2">
+                                                        <i class="fab fa-facebook-f"></i>
+                                                    </button>
+                                                    <p class="mb-0 fw-semibold">Facebook</p>
+                                                    <h4 class="m-0 fw-bold">25k <span
+                                                            class="text-muted font-12 fw-normal">Followers</span></h4>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-auto">
+                                                    <button type="button"
+                                                        class="btn btn-soft-info btn-icon-circle btn-icon-circle-sm mb-2">
+                                                        <i class="fab fa-twitter"></i>
+                                                    </button>
+                                                    <p class="mb-0 fw-semibold">Twitter</p>
+                                                    <h4 class="m-0 fw-bold">58k <span
+                                                            class="text-muted font-12 fw-normal">Followers</span></h4>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                                <!--end f_profile-->
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+                <div class="row">
+                    <div class="col-lg-5 col-xl-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h4 class="card-title">Personal Information</h4>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </div>
+                            <!--end card-header-->
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">First
+                                        Name</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <input class="form-control" type="text" value="Muhammad">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">Last
+                                        Name</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <input class="form-control" type="text" value="Navab">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">Company
+                                        Name</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <input class="form-control" type="text" value="Veuz Concepts">
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">Contact
+                                        Phone</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="las la-phone"></i></span>
+                                            <input type="text" class="form-control" value="+123456789"
+                                                placeholder="Phone" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">Email
+                                        Address</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="las la-at"></i></span>
+                                            <input type="text" class="form-control" value="muhammadnavab@gmail.com"
+                                                placeholder="Email" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">Website
+                                        Link</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="la la-globe"></i></span>
+                                            <input type="text" class="form-control" value=" https://veuzconcepts.com"
+                                                placeholder="Email" aria-describedby="basic-addon1">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-4 col-lg-3 text-start mb-lg-0 align-self-center">Country</label>
+                                    <div class="col-lg-9 col-xl-8 col-xxl-8">
+                                        <select class="form-select">
+                                            <option>India</option>
+                                            <option>London</option>
+                                            <option>USA</option>
+                                            <option>Canada</option>
+                                            <option>Thailand</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-9 col-xl-8 offset-lg-4 col-xxl-8 offset-xxl-3">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Submit</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end col-->
+                    <div class="col-lg-4 col-xl-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Change Password</h4>
+                            </div>
+                            <!--end card-header-->
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-3 col-lg-3 text-start mb-lg-0 align-self-center">Current
+                                        Password</label>
+                                    <div class="col-lg-9 col-xl-9 col-xxl-8">
+                                        <input class="form-control" type="password" placeholder="Password">
+                                        <a href="#" class="text-primary font-12">Forgot password ?</a>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-xxl-3 col-xl-3 col-lg-3 text-start mb-lg-0 align-self-center">New
+                                        Password</label>
+                                    <div class="col-lg-9 col-xl-9 col-xxl-8">
+                                        <input class="form-control" type="password" placeholder="New Password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        class="col-xxl-3 col-xl-3 col-lg-3 text-start mb-lg-0 align-self-center">Confirm
+                                        Password</label>
+                                    <div class="col-lg-9 col-xl-9 col-xxl-8">
+                                        <input class="form-control" type="password" placeholder="Re-Password">
+                                        <span class="form-text text-muted font-12">Never share your password.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-9 col-xl-9 col-xxl-8 offset-lg-3">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Change
+                                            Password</button>
+                                        <button type="button" class="btn btn-sm btn-outline-danger">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Other Settings</h4>
+                            </div>
+                            <!--end card-header-->
+                            <div class="card-body">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="Email_Notifications"
+                                        checked>
+                                    <label class="form-check-label" for="Email_Notifications">
+                                        Email Notifications
+                                    </label>
+                                    <span class="form-text text-muted font-12 mt-0">Do you need them?</span>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="API_Access">
+                                    <label class="form-check-label" for="API_Access">
+                                        API Access
+                                    </label>
+                                    <span class="form-text text-muted font-12 mt-0">Enable/Disable access</span>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                    </div> <!-- end col -->
+
+                    <div class="col-lg-3">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="dash-datepick">
+                                    <input type="hidden" id="light_datepick" />
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h4 class="card-title">Social Profile</h4>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </div>
+                            <!--end card-header-->
+                            <div class="card-body">
+                                <div class="button-list btn-social-icon">
+                                    <button type="button" class="btn btn-soft-info btn-icon-circle">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-soft-info btn-icon-circle ms-2">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-soft-info btn-icon-circle  ms-2">
+                                        <i class="fab fa-dribbble"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-soft-info btn-icon-circle  ms-2">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-soft-info btn-icon-circle  ms-2">
+                                        <i class="fab fa-google-plus-g"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!--end card-body-->
+                        </div>
+                        <!--end card-->
+                    </div>
+                    <!--end col-->
+                </div>
+
+
+
+            </div><!-- container -->
+
+            <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="addUserLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title  fw-bold" id="addUserLabel">Employee Invitation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="inviteby_email">
+                                <div class="input-group mb-3">
+                                    <input type="email" class="form-control" placeholder="Email address"
+                                        id="exampleInputEmail1" aria-describedby="exampleInputEmail1">
+                                    <button class="btn btn-primary" type="button" id="button-addon2">Sent</button>
+                                </div>
+                            </div>
+                            <div class="members_list">
+                                <h6 class="fw-bold ">Employee </h6>
+                                <ul class="list-unstyled list-group list-group-custom list-group-flush mb-0">
+                                    <li class="list-group-item py-3 text-center text-md-start">
+                                        <div
+                                            class="d-flex align-items-center flex-column flex-sm-column flex-md-column flex-lg-row">
+                                            <div class="no-thumbnail mb-2 mb-md-0">
+                                                <img class="avatar lg rounded-circle emp-img"
+                                                    src="assets/images/users/user-5.jpg" alt="">
+                                            </div>
+                                            <div class="flex-fill ms-3 text-truncate">
+                                                <h6 class="mb-0  fw-bold">Muhammad Navab(you)</h6>
+                                                <span class="text-muted">Muhammadnavab@gmail.com</span>
+                                            </div>
+                                            <div class="members-action">
+                                                <span class="members-role ">Admin</span>
+                                                <div class="btn-group">
+                                                    <button type="button"
+                                                        class="btn bg-transparent dropdown-toggle dropdown-tog"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-user-cog  fs-6"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#">Reset Password</a></li>
+                                                        <li><a class="dropdown-item" href="#">Activity Report</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item py-3 text-center text-md-start">
+                                        <div
+                                            class="d-flex align-items-center flex-column flex-sm-column flex-md-column flex-lg-row">
+                                            <div class="no-thumbnail mb-2 mb-md-0">
+                                                <img class="avatar lg rounded-circle emp-img"
+                                                    src="assets/images/users/user-3.jpg" alt="">
+                                            </div>
+                                            <div class="flex-fill ms-3 text-truncate">
+                                                <h6 class="mb-0  fw-bold">Lucas Baker<a href="#"
+                                                        class="link-secondary ms-2"></a></h6>
+                                                <span class="text-muted">lucas.baker@gmail.com</span>
+                                            </div>
+                                            <div class="members-action">
+                                                <div class="btn-group">
+                                                    <button type="button"
+                                                        class="btn bg-transparent dropdown-toggle dropdown-tog"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Members
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item" href="#">
+
+
+                                                                <span>All operations permission</span>
+                                                            </a>
+
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="#">
+
+                                                                <span>Only Invite & manage team</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button type="button"
+                                                        class="btn bg-transparent dropdown-toggle dropdown-tog"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-user-cog  fs-6"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#">Delete Member</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item py-3 text-center text-md-start">
+                                        <div
+                                            class="d-flex align-items-center flex-column flex-sm-column flex-md-column flex-lg-row">
+                                            <div class="no-thumbnail mb-2 mb-md-0">
+                                                <img class="avatar lg rounded-circle emp-img"
+                                                    src="assets/images/users/user-7.jpg" alt="">
+                                            </div>
+                                            <div class="flex-fill ms-3 text-truncate">
+                                                <h6 class="mb-0  fw-bold">Una Coleman</h6>
+                                                <span class="text-muted">una.coleman@gmail.com</span>
+                                            </div>
+                                            <div class="members-action">
+                                                <div class="btn-group">
+                                                    <button type="button"
+                                                        class="btn bg-transparent dropdown-toggle dropdown-tog"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Members
+                                                    </button>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li>
+                                                            <a class="dropdown-item" href="#">
+
+
+                                                                <span>All operations permission</span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="#">
+
+                                                                <span>Only Invite & manage team</span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <div class="btn-group">
+                                                        <button type="button"
+                                                            class="btn bg-transparent dropdown-toggle dropdown-tog"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="fas fa-user-cog  fs-6"></i>
+                                                        </button>
+                                                        <ul class="dropdown-menu dropdown-menu-end">
+                                                            <li><a class="dropdown-item" href="#">Reset Password</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="#">Activity Report</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="#">Suspend Member</a>
+                                                            </li>
+                                                            <li><a class="dropdown-item" href="#">Delete Member</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer text-center text-sm-start">
+                &copy; <script>
+                    document.write(new Date().getFullYear())
+                </script> Veuz Concepts
+            </footer>
+            <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+
+
+
+
+    <!-- jQuery  -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/metismenu.min.js"></script>
+    <script src="assets/js/waves.js"></script>
+    <script src="assets/js/feather.min.js"></script>
+    <script src="assets/js/simplebar.min.js"></script>
+    <script src="assets/js/moment.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+
+    <script src="plugins/leaflet/leaflet.js"></script>
+    <script src="plugins/lightpick/lightpick.js"></script>
+    <script src="assets/pages/jquery.profile.init.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>

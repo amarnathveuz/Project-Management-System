@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+    <head>
+        <meta charset="utf-8" />
+        <title>Dastone - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'login/assets/images/favicon.ico' %}">
+
+        <!-- App css -->
+        <link href="{% static 'login/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'login/css/icons.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'login/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript">
+            history.pushState(null, null, document.URL);
+            window.addEventListener('popstate', function () {
+                history.pushState(null, null, document.URL);
+            });
+        </script>
+    </head>
+
+    <body class="account-body accountbg">
+
+        <!-- Log In page -->
+        <div class="container">
+            <div class="row vh-100 d-flex justify-content-center">
+                <div class="col-12 align-self-center">
+                    <div class="row">
+                        <div class="col-lg-5 mx-auto">
+                            <div class="card">
+                                <div class="card-body p-0 auth-header-box">
+                                    <div class="text-center p-3">
+                                        <a href="#" class="logo-admin">
+                                            <img src="{% static 'login/img/silv.png' %}" alt="logo" class="auth-logo">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0">
+                                    <ul class="nav-border nav nav-pills" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active fw-semibold" data-toggle="tab" href="#LogIn_Tab" role="tab">Log In</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link fw-semibold" data-toggle="tab" href="#Register_Tab" role="tab">Register</a>
+                                        </li>
+                                    </ul>
+                                     <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active p-3" id="LogIn_Tab" role="tabpanel">                                        
+                                            <form class="form-horizontal auth-form" action="login_action" method="POST">
+                                                {% csrf_token %}
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="username">Username</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="text" class="form-control" name="username" id="username" required>
+                                                    </div>                                    
+                                                </div><!--end form-group--> 
+                    
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="userpassword">Password</label>                                            
+                                                    <div class="input-group">                                  
+                                                        <input type="password" class="form-control" name="password" id="userpassword" required>
+                                                    </div>                               
+                                                </div><!--end form-group--> 
+                    
+                                                <div class="form-group row my-3">
+                                                    <div class="col-sm-6 px-0">
+                                                        <div class="custom-switch switch-success remembr">
+                                                            <input type="checkbox" id="remembr">
+                                                            <label class="form-label text-mutedd" for="customSwitchSuccess">Remember me</label>
+                                                        </div>
+                                                    </div><!--end col--> 
+                                                    <div class="col-sm-6 px-0 text-end">
+                                                        <a href="#" class="text-mutedd font-13"><i class="dripicons-lock"></i> Forgot password?</a>                                    
+                                                    </div><!--end col--> 
+                                                </div><!--end form-group--> 
+                    
+                                                <div class="form-group mb-0 row">
+                                                    <div class="col-12 px-0">
+                                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Log In <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                    </div><!--end col--> 
+                                                </div> <!--end form-group-->                           
+                                            </form><!--end form-->
+                                            <div class="m-3 text-center text-mutedd">
+                                                <p class="mb-0 dont">Don't have an account ?  <a href="" class="text-primary ms-2">Register</a></p>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="tab-pane px-3 pt-3" id="Register_Tab" role="tabpanel">
+                                            <form class="form-horizontal auth-form" action="register_action" method="POST">
+                                                {% csrf_token %}
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="companyname">Company Name</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="text" class="form-control" name="companyname" id="companyname" required>
+                                                    </div>                                    
+                                                </div><!--end form-group--> 
+
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="companyaddress">Company Address</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <textarea type="text" class="form-control" name="companyaddress" id="companyaddress" required></textarea>
+                                                    </div>                                    
+                                                </div><!--end form-group--> 
+
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="mo_number">Phone Number</label>                                            
+                                                    <div class="input-group">                                 
+                                                        <input type="number" class="form-control" name="mobile_number" id="mo_number" required>
+                                                    </div>                               
+                                                </div><!--end form-group--> 
+            
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="useremail">Email</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="email" class="form-control" name="email" id="useremail" required>
+                                                    </div>                                    
+                                                </div><!--end form-group-->
+
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="username">Username</label>
+                                                    <div class="input-group">                                                                                         
+                                                        <input type="text" class="form-control" name="username" id="username" required>
+                                                    </div>                                    
+                                                </div><!--end form-group--> 
+                    
+                                                <div class="form-group mb-2">
+                                                    <label class="form-label" for="userpassword">Password</label>                                            
+                                                    <div class="input-group">                                  
+                                                        <input type="password" class="form-control" name="password" id="userpassword" required>
+                                                    </div>                               
+                                                </div><!--end form-group--> 
+                                                
+                                                <div class="form-group row my-3">
+                                                    <div class="col-sm-12">
+                                                        <div class="custom-switch switch-success remembr">
+                                                            <input type="checkbox"  id="terms" required>
+                                                            <label class="form-label text-mutedd" for="terms">You agree to the <a href="#" class="text-primary"> Terms of Use</a></label>
+                                                        </div>
+                                                    </div><!--end col-->                                             
+                                                </div><!--end form-group--> 
+                    
+                                                <div class="form-group mb-0 row">
+                                                    <div class="col-12 px-0">
+                                                        <button class="btn btn-primary w-100 waves-effect waves-light" type="submit">Register <i class="fas fa-sign-in-alt ms-1"></i></button>
+                                                    </div><!--end col--> 
+                                                </div> <!--end form-group-->                           
+                                            </form><!--end form-->
+                                            <p class="my-3 text-mutedd text-center dont">Already have an account ?<a href="" class="text-primary ms-2"> Log in</a></p>                                                    
+                                        </div>
+                                    </div>
+                                </div><!--end card-body-->
+                 
+                            </div><!--end card-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end col-->
+            </div><!--end row-->
+        </div><!--end container-->
+        <!-- End Log In page -->
+
+        <script type = "text/javascript" >
+            function preventBack() 
+            setTimeout("preventBack()", 0);
+            window.onunload = function () { null };
+        </script>
+
+
+        <!-- jQuery  -->
+        <script src="{% static 'login/js/jquery.min.js' %}"></script>
+        <script src="{% static 'login/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <style>
+            .swal2-title{
+                font-size: 12px!important;
+            }
+        </style>
+
+        {% if messages %}
+        <script>
+            {% for message in messages %}
+         
+        
+            var toastMixin = Swal.mixin({
+            toast: true,
+            icon: '{{message.tags}}',
+            title: 'General Title',
+            animation: false,
+            position: 'top-right',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            });
+            toastMixin.fire({
+            animation: true,
+            title: "{{message}}"
+            });
+            {% endfor %}
+        
+        </script>
+        {% endif %}
+
+    
+    </body>
+
+</html>
